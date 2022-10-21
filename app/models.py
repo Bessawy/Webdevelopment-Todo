@@ -3,11 +3,15 @@ import enum
 from sqlalchemy import Enum
 
 class Status(enum.Enum):
+    """ Enum class used to define the status of the Todo.status object """
+
     NotStarted = 'NotStarted'
     OnGoing = 'OnGoing'
     Completed = 'Completed'
 
 def getStatus(value):
+    """ This function is used to convert strings to Status enum object """
+
     if(value == 'NS'):
         return Status.NotStarted
     elif(value == 'OG'):
@@ -18,6 +22,8 @@ def getStatus(value):
         return None
 
 class User(db.Model):
+    """ User database """
+
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(80))
     password = db.Column(db.String(100))
@@ -28,6 +34,8 @@ class User(db.Model):
         return f'<emial: {self.email}>'
 
 class Todo(db.Model):
+    """ Todo list database """
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
     description = db.Column(db.String(200))
